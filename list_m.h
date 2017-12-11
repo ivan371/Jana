@@ -46,6 +46,11 @@ class list_m{
 				el = el -> next;
 			}
 		}
+		bool operator==(list_m &newel) {
+			if(newel.get_size() == (*this).get_size())
+				return true;
+			return false;
+		}
 	private:
 		int size;
 		struct list_el* root;
