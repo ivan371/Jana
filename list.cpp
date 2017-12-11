@@ -11,5 +11,22 @@ int main() {
 	l -> insert(4);
 	l -> pop();
 	l -> dump();
+	list_m* l1 = new list_m(4);
+	l1 -> insert(5);
+	if(*l1 == *l) {
+		cout << "more";
+	}
+	else {
+		cout << "not_more";
+	}
+	l1 -> insert(4);
+	l1 -> insert(3);
+	if(*l == *l1) {
+		cout << "more";
+	}
+	else {
+		cout << "not_more";
+	}
 	delete(l);
+	delete(l1);
 }

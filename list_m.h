@@ -46,8 +46,8 @@ class list_m{
 				el = el -> next;
 			}
 		}
-		bool operator==(list_m &newel) {
-			if(newel.get_size() == (*this).get_size())
+		bool operator == (list_m &newell) {
+			if(newell.get_size() == (this -> get_size()))
 				return true;
 			return false;
 		}
