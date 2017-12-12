@@ -1,8 +1,8 @@
 #include <cmath>
 
 class Complex{
-	double re, im;
 public:
+	double re, im;
 	Complex() {};
 	Complex (double r) {
 		re = r; 
@@ -21,7 +21,7 @@ public:
 	~Complex() {}
 	
 	float abs() {
-		return sqrt(re * re - im * im);
+		return sqrt(re * re + im * im);
 	}
 
 	Complex & operator = (Complex &c) {
@@ -33,21 +33,21 @@ public:
 	Complex operator + (Complex &c) {
 		Complex temp;
 		temp.re = re + c.re;
-		temp.im = im + c.re;
+		temp.im = im + c.im;
 		return temp;	
 	}
 	
 	Complex operator - (Complex &c) {
 		Complex temp;
 		temp.re = re - c.re;
-		temp.im = im - c.re;
+		temp.im = im - c.im;
 		return temp;
 	}
 	
 	Complex operator * (Complex &c) {
 		Complex temp;
-		temp.re = re*c.re;
-		temp.im = re*c.im;
+		temp.re = re * c.re - im * c.im;
+		temp.im = re * c.im + im * c.re;
 		return temp;
 	}
 	
