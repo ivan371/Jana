@@ -36,6 +36,19 @@ class list_m{
 			size--;
 			return value;
 		}
+		int pop_back() {
+			if(size != 0) {
+				list_el* el = root;
+				for(int i = 0; i <= size - 2; i++) {
+					el = el -> next;
+				}
+				int value = (el -> next) -> value;
+				delete el -> next;
+				el -> next = root;
+				size--;
+				return value;
+			}
+		}
 		int get_size() {
 			return size;
 		}
