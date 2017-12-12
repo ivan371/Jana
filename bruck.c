@@ -17,24 +17,33 @@ int nod(int a, int b) {
 		return nod(b, a % b);
 }
 
-double operate(struct bruch a, struct bruch b, char op) {
+struct bruch operate(struct bruch a, struct bruch b, char op) {
 	int nodt;
+	struct bruch br;
 	switch(op) {
 		case '+':
 			nodt = nod(a.a * b.b + a.b * b.a, a.b * b.b);
-			return ((double)(a.a * b.b + a.b * b.a) / nodt) / ((double)(a.b * b.b) / nodt);
+			br.a = (a.a * b.b + a.b * b.a) / nodt;
+			br.b = (a.b * b.b) / nodt;
+			return br;
 		break;
 		case '-':
 			nodt = nod(a.a * b.b - a.b * b.a, a.b * b.b);
-			return ((double)(a.a * b.b - a.b * b.a) / nodt) / ((double)(a.b * b.b) / nodt);
+			br.a = (a.a * b.b - a.b * b.a) / nodt;
+			br.b = (a.b * b.b) / nodt;
+			return br;
 		break;
 		case '*':
 			nodt = nod(a.a * b.a, a.b * b.b);
-			return ((double)(a.a * b.a) / nodt) / ((double)(a.b * b.b) / nodt);
+			br.a = (a.a * b.a) / nodt;
+			br.b = (a.b * b.b) / nodt;
+			return br;
 		break;
 		case '/':
 			nodt = nod(a.a * b.b, a.b * b.a);
-			return ((double)(a.a * b.b) / nodt) / ((double)(a.b * b.a) / nodt);
+			br.a = (a.a * b.b) / nodt;
+			br.b = (a.b * b.a) / nodt;
+			return br;
 		break;
 	}
 }
@@ -43,5 +52,8 @@ int main(){
 	struct bruch a; 
 	struct bruch b;
 	scanf("%d %d %d %d", &a.a, &a.b, &b.a, &b.b);
-	printf("%lf %lf %lf %lf", operate(a, b, '+'), operate(a, b, '-'), operate(a, b, '*'), operate(a, b, '/'));
+	printf("%d %d\n", operate(a, b, '+').a, operate(a, b, '+').b);
+	printf("%d %d\n", operate(a, b, '-').a, operate(a, b, '-').b);
+	printf("%d %d\n", operate(a, b, '*').a, operate(a, b, '*').b);
+	printf("%d %d\n", operate(a, b, '/').a, operate(a, b, '/').b);
 }
