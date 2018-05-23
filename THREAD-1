@@ -34,7 +34,7 @@ int main() {
     std::vector<std::thread> threads;
     cin << n;
 
-    int nthreads = std::thread::hardware_concurrency();
+    int nthreads = std::thread::hardware_concurrency();//Тут число тредов можно так же ввести с клавиатуры
     if(nthreads == 0) nthreads = 2;
 
     for(int i = 0; i < nthreads; i++) {
