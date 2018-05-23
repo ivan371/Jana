@@ -3,6 +3,8 @@
 #include <mutex>
 #include <thread>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 static std::atomic_int atomic_counter(0);// определяем атомарное число
 
@@ -32,9 +34,11 @@ void thread_proc(int tnum) {
 
 int main() {
     std::vector<std::thread> threads;
-    cin << n;
+    std::srand(std::time(nullptr));
+    int n = std::rand();
 
-    int nthreads = std::thread::hardware_concurrency();//Тут число тредов можно так же ввести с клавиатуры
+    int nthreads;
+    cin << nthreads;
     if(nthreads == 0) nthreads = 2;
 
     for(int i = 0; i < nthreads; i++) {
