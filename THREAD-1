@@ -4,8 +4,7 @@
 #include <thread>
 #include <vector>
 
-static std::atomic_int atomic_counter(0);
-static const int MAX_COUNTER_VAL = 100;
+static std::atomic_int atomic_counter(0);// определяем атомарное число
 
 std::mutex io_mtx;
 
@@ -15,11 +14,13 @@ void thread_proc(int tnum) {
     for(;;) {
         {
             int ctr_val = ++atomic_counter;
+            //Эта штука - атомарное число. Оно увеличивается каждым тредом последовательно. Каждый тред прибавляет к нему 1
             if(n < 0)
-                break;
+            //Проверяем, что n не отрицательно
+                break;// Выходим из цикла, если n отрицательно
 
             {
-                n -= ctr_val;
+                n -= ctr_val;//Вычитаем из n атомарное число
                 std::lock_guard<std::mutex> lock(io_mtx);
                 std::cout << "Thread " << tnum << ": counter = " <<
                              ctr_val << std::endl;
@@ -37,7 +38,7 @@ int main() {
     if(nthreads == 0) nthreads = 2;
 
     for(int i = 0; i < nthreads; i++) {
-        std::thread thr(thread_proc, i);
+        std::thread thr(thread_proc, i);// типа запускаем число потоков
         threads.emplace_back(std::move(thr));
     }
 
